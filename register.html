@@ -97,6 +97,37 @@
     </div>
 
   </div>
+  <script>
+    document.getElementById('registrationForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Keeps the page from refreshing automatically
+
+      const firstName = document.getElementById('firstName').value.trim();
+      const lastName = document.getElementById('lastName').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const termsAccepted = document.getElementById('termsCheckbox').checked;
+
+      // Browser safety fallback validation
+      if (!firstName || !lastName || !email || !password || !termsAccepted) {
+        alert('Please fill out all required fields.');
+        return;
+      }
+
+      console.log('Form submission payload:', { firstName, lastName, email });
+      alert('Success! Registration data captured.');
+    });
+
+    // Password Eye Toggle Feature
+    const togglePassword = document.getElementById('togglePassword');
+    const passwordInput = document.getElementById('password');
+
+    togglePassword.addEventListener('click', function() {
+      const isPasswordType = passwordInput.getAttribute('type') === 'password';
+      passwordInput.setAttribute('type', isPasswordType ? 'text' : 'password');
+      this.classList.toggle('fa-eye');
+      this.classList.toggle('fa-eye-slash');
+    });
+  </script>
 
 </body>
 </html>
